@@ -12,11 +12,10 @@ use News\Model\Category;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class PostController extends AbstractActionController
 {
 	public function indexAction()
 	{
-
 
 		$categoryService = $this->getServiceLocator()->get("categoryTable");
 
@@ -27,16 +26,6 @@ class IndexController extends AbstractActionController
 
 		//$categoryService = $this->getServiceLocator()->get("Album\Model\AblumTable");
 		return array('categories'=>$categories);
-	}
-	
-	public function postsAction(){
-		$id = (int) $this->params()->fromRoute('categoryid', 0);
-		
-		$postService = $this->getServiceLocator()->get("News\Model\PostTable");
-		
-		$posts = $postService->getPostsByCategoryId($id);
-		
-		return array('posts'=>$posts);
 	}
 	
 	

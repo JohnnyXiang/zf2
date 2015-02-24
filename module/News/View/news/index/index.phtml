@@ -13,10 +13,14 @@
 	<tbody>
 		<?php foreach ($this->categories as $category):?>
 			<tr>
-				<td><?php echo ($category->getId())?></td>
+				<td><?php
+
+				echo ($category->getId())?></td>
 				<td><?php echo ($category->getName())?></td>
-				<td><?php echo ($category->getPostion())?></td>
+				<td><?php echo ($category->getPosition())?></td>
 				<td>
+				<a href="<?php echo $this->url("category_post",array("id"=>$category->getId()))?>">View Posts</a>
+				</td>
 			</tr>
 		<?php endforeach;?>
 	</tbody>

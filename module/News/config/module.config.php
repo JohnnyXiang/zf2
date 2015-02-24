@@ -20,6 +20,20 @@ return array(
                     ),
                 ),
             ),
+            
+            'category_post' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/category[/:categoryid]/posts',
+                     'constraints' => array(
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'News\Controller\Index',
+                         'action'     => 'posts',
+                     ),
+                 ),
+             ),
          ),
      ),
 

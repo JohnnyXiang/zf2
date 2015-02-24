@@ -1,6 +1,10 @@
 <?php
 namespace News;
 
+use News\Model\Post;
+use News\Model\PostTable;
+use News\Model\DateFormatter;
+
 use Zend\Db\TableGateway\TableGateway;
 
 use News\Model\Category;
@@ -36,7 +40,7 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 	{
 		return array(
              'factories' => array(
-	                 'News\Model\CategoryTable' =>  function($sm) {
+	                'News\Model\CategoryTable' =>  function($sm) {
 						$tableGateway = $sm->get('CategoryTableGateway');
 				
 						$table = new CategoryTable($tableGateway);
@@ -55,10 +59,45 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 		                 return new TableGateway('categories_dadadada', $dbAdapter, null, $resultSetPrototype);
 	                 },
 	                 
+	                   
+	                 'News\Model\CategoryTableFactory' => "News\Model\CategoryTableFactory",
+	               
+	                
+	                 'News\Model\PostTable' =>  function($sm) {
+						$tableGateway = $sm->get('PostTableGateway');
+				
+						$table = new PostTable($tableGateway);
+						
+						return $table;
+	                 },
+	                 
+	                 'PostTableGateway' => function ($sm) {
+
+	                 	 $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+	                 	 $categoryService = $sm->get('News\Model\CategoryTable');
+
+		                 $resultSetPrototype = new ResultSet();
+		                
+		                 $resultSetPrototype->setArrayObjectPrototype(new Post($categoryService));
+		               
+		                 return new TableGateway('posts', $dbAdapter, null, $resultSetPrototype);
+	                 },
+	                 
 	                
 	                 
-                 )
+	                
+	                 
+            ),
+            'invokables' => array(
+	            // Keys are the service names
+	            // Values are valid class names to instantiate.
+	            'dateFormater' => 'News\Model\DateFormatter',
+	        ),  
+
+	        'aliases' => array(
+	            "categoryTable"=>"News\Model\CategoryTable"
+	        ),
                 
-              );
-		}
+         );
+	}
  }

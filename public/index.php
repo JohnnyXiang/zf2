@@ -4,7 +4,8 @@
  * to the application root now.
  */
 chdir(dirname(__DIR__));
-
+date_default_timezone_set("UTC");
+ 
 /**
   * Display all errors when APPLICATION_ENV is development.
   */

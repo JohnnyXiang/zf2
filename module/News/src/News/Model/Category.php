@@ -8,6 +8,7 @@ class Category {
 	
 	public function exchangeArray($data)
 	{
+		
 		$this->id = $data['id'];
 		$this->name = $data['name'];
 		$this->position = $data['position'];
@@ -22,7 +23,7 @@ class Category {
 	}
 	
 	public function getPosition(){
-		return $this->position();
+		return $this->position;
 	}
 	
 }

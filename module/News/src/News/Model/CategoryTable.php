@@ -20,4 +20,23 @@ class CategoryTable{
 	function fetchAll() {
 		return $this->tableGateway->select();
 	}
+	
+	function getById($id) {
+		
+		$sql = $this->tableGateway->getSql();
+		
+		$select = $sql->select();
+		
+		$select->where(array('id'=>$id));
+		
+		$resultSet = $this->tableGateway->selectWith($select);
+		
+		if(count($resultSet) < 1 ){
+			throw new \Exception("New category found in db");
+		}
+		
+		return $resultSet->current();
+	}
+	
+	
 }
