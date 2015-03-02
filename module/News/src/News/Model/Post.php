@@ -56,5 +56,6 @@ class Post {
 	public function getCategoryName(){
 		return $this->category->getName();
 	}
+	
 }
 	

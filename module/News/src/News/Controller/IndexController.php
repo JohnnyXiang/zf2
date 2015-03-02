@@ -2,13 +2,9 @@
 namespace News\Controller;
 
 use Zend\Db\TableGateway\TableGateway;
-
 use Zend\Db\ResultSet\ResultSet;
-
 use News\Model\CategoryTable;
-
 use News\Model\Category;
-
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -16,8 +12,6 @@ class IndexController extends AbstractActionController
 {
 	public function indexAction()
 	{
-
-
 		$categoryService = $this->getServiceLocator()->get("categoryTable");
 
 		$categories = $categoryService->fetchAll();
@@ -38,6 +32,8 @@ class IndexController extends AbstractActionController
 		
 		return array('posts'=>$posts);
 	}
+	
+	
 	
 	
 }

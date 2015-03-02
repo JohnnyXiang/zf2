@@ -1,0 +1,7 @@
+<h1>Blog</h1>
+
+<ul>
+<?php foreach($this->posts as $post):?>
+<li><?php echo $post->getTitle()?> <em>by <?php echo $post->getAuthor()?></em> - <?php echo $post->getTimeCreated()?> </li>
+<?php endforeach;?>
+</ul>
