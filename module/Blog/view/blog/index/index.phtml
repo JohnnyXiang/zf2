@@ -2,6 +2,18 @@
 
 <ul>
 <?php foreach($this->posts as $post):?>
-<li><?php echo $post->getTitle()?> <em>by <?php echo $post->getAuthor()?></em> - <?php echo $post->getTimeCreated()?> </li>
+<li>
+<a href="<?php echo $this->url("view_post",array('post_id'=>$post->getId()));?>">
+<?php echo $post->getTitle()?>
+</a>
+ <em>by <?php echo $post->getAuthor()?></em> - <?php echo $post->getTimeCreated()?>
+ -
+ <a href="<?php echo $this->url("edit_post",array('post_id'=>$post->getId()));?>">Edit</a>
+ -
+ <a href="<?php echo $this->url("delete_post",array('post_id'=>$post->getId()));?>">Delete</a>
+ 
+  </li>
 <?php endforeach;?>
 </ul>
+
+<a href="<?php echo $this->url('add_post')?>" class="btn btn-default">Add Post</a>

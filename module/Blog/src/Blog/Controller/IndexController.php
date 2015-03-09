@@ -8,6 +8,7 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+    	
     		$blogTable = $this->getServiceLocator()->get("Blog\Model\BlogTable");
     		
     		$posts = $blogTable->fetchAll();

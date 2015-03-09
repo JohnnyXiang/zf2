@@ -1,0 +1,26 @@
+<h1>Add Post</h1>
+<?php 
+$form->setAttribute('action', $this->url('add_post'));
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('csrf'));
+?>
+	<div class="form-group">
+	    <label>Title</label>
+	    <?php echo $this->formInput($form->get('title'));?>
+	    <span class="text-danger"><?php echo $this->formElementErrors($form->get('title'));?></span>
+	</div>
+	<div class="form-group">
+	    <label >Content</label>
+	   	<?php echo $this->formTextarea($form->get('content'));?>
+	   	<span class="text-danger"><?php echo $this->formElementErrors($form->get('content'));?></span>
+	</div>
+	
+	<div class="form-group">
+	    <label>Author</label>
+	    <?php echo $this->formInput($form->get('author'));?>
+	    <span class="text-danger"><?php echo $this->formElementErrors($form->get('author'));?></span>
+	</div>
+	
+	<button type="submit" class="btn btn-default">Submit</button>
+<?php echo $this->form()->closeTag();?>

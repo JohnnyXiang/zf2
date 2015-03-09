@@ -1,0 +1,6 @@
+<h1><?php echo $this->blog->getTitle()?></h1>
+<p>by <?php echo $this->blog->getAuthor()?> 
+at <?php echo date("M d, Y H:i",strtotime($this->blog->getTimeCreated()))?></p>
+
+<br/>
+<?php echo nl2br($this->blog->getContent())?>

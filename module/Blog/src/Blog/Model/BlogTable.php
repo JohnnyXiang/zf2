@@ -20,11 +20,38 @@ class BlogTable{
 		return $this->tableGateway->selectWith($select);
 	}
 	
-	public function saveBlog(){
+	public function getBlog($id){
 		
+		$resultSet = $this->tableGateway->select(array('id'=>$id));
+		
+		if(count($resultSet) < 1 ){
+			throw new Exception("No blog post found in database.");
+		}
+		
+		return $resultSet->current();
 	}
 	
-	public function deleteBlog(){
+	public function saveBlog(Blog $blog){
 		
+		$data = array(
+			'title'=>$blog->getTitle(),
+			'content'=>$blog->getContent(),
+			'author'=>$blog->getAuthor()
+		);
+		
+		if ($blog->getId()){
+			$this->tableGateway->update($data,array("id"=>$blog->getId()));
+		}else{
+			$this->tableGateway->insert($data);
+			$id = $this->tableGateway->lastInsertValue;
+			
+			$blog->setId($id);
+		}
+		
+		return $blog;
+	}
+	
+	public function deleteBlog(Blog $blog){
+		return $this->tableGateway->delete(array("id"=>$blog->getId()));
 	}
 }

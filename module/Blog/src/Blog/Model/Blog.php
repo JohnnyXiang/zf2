@@ -10,6 +10,7 @@ class Blog {
 	
 	public function exchangeArray($data)
 	{
+		//var_dump($data);
 		$this->id = $data['id'];
 		$this->title = $data['title'];
 		$this->author = $data['author'];
@@ -19,6 +20,15 @@ class Blog {
 	
 	public function getId(){
 		return $this->id;
+	}
+	
+	/**
+	 * set the id for the blog object
+	 * @param int $id
+	 */
+	public function setId($id){
+		$this->id = $id;
+		return $this;
 	}
 	
 	public function getTitle(){
